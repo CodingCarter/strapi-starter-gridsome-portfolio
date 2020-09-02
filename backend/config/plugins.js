@@ -1,13 +1,13 @@
-// Use Cloudinary for Heroku
-module.exports = ({ env }) => {
-  return {
-    upload: {
-      provider: 'cloudinary',
-      providerOptions: {
-        cloud_name: env('CLOUDINARY_CLOUD_NAME'),
-        api_key: env('CLOUDINARY_API_KEY'),
-        api_secret: env('CLOUDINARY_API_SECRET'),
+module.exports = ({ env }) => ({
+  upload: {
+    provider: 'aws-s3',
+    providerOptions: {
+      endpoint: env('DO_SPACE_ENDPOINT'),
+      accessKeyId: env('DO_SPACE_KEY'),
+      secretAccessKey: env('DO_SPACE_SECRET'),
+      params: {
+        Bucket: env('DO_SPACE_NAME'),
       },
     },
-  };
-};
+  },
+});
